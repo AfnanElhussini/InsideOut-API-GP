@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
     # ex: /polls/
-    path('apiroot/', views.api_root, name='apiroot'),
+    path('Emotion/', views.Get_Emotion, name='Emotion'),
     path('apiroot2/', views.api_root2, name='apiroot2'),
     path('file/', views.simple_upload, name='file'),
 

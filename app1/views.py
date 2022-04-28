@@ -7,18 +7,16 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 from model import emopredict
 import pandas as pd
+from django.http import JsonResponse
+from model import Get_Emo
 
 
 @csrf_exempt
 @api_view(['GET'])
-def api_root(request):
-    x = request.GET.get("x")
-    x = int(x)+10
-    return Response({
-        "Vlaue": x
-
-
-    })
+def Get_Emotion(request):
+    Emotion= Get_Emo()
+    
+    return Response({"Emo":Emotion})
 
 
 @csrf_exempt
@@ -43,19 +41,9 @@ def simple_upload(request):
         uploaded_file_url = fs.url(filename)
         signal = pd.read_csv(filename)
         emoresponse = emopredict(signal)
-        return Response({
-        "Vlaue":emoresponse})
+        return JsonResponse({"Emo": emoresponse})
+        
     return Response({
         "Vlaue":"error"})
 # Create your views here.
 
-@csrf_exempt
-@api_view(['GET'])
-def api_root(request):
-    x = request.GET.get("x")
-    x = int(x)+10
-    return Response({
-        "Vlaue": x
-
-
-    })
