@@ -46,12 +46,21 @@ extracted_signals= extract_signals(Emo_Signals)
 def Get_Emo():
     predicted=np.array(list(map(lambda x: np.argmax(x), model.predict(extracted_signals))))
     predicted_emo=random.choice(predicted)
+    Happy=["Feeling Happy, hope you have a great day too","Feelin Happy, hope you have the same ",
+    "I am feeling happy.. Don't try to make me upset"]
+    happy=random.choice(Happy)
+    Sad=["Sorry, Feeling Sad, hope you can make me happy","Feeling Sad, why don't you make difference",
+    "I am feeling sad..Think of what changes my mood"]
+    sad=random.choice(Sad)
+    Natural=["I am natural..Neither happy nor sad .. Don't mess me up","Natural, better to call!"]
+    natural=random.choice(Natural)
+
     if predicted_emo == [0]:
-        return "\N{crying face}  Sad"
+        return "\N{crying face} ", sad
     elif predicted_emo == [1]:
-        return "\N{neutral face}  Natural"
+        return "\N{smiling face with halo} ", natural
     else:
-        return "\N{grinning face with smiling eyes}  Happy"
+        return "\N{grinning face with smiling eyes} ", happy
 #get_emo=Get_Emo()
 #print(get_emo)
 
